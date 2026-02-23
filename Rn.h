@@ -30,6 +30,17 @@ class RnVector  {
         // ── Destructor de clase ────────────────────────────────────────────
         ~RnVector() = default;
 
+    public:
+        // Puntero modificable (si el objeto NO es const)
+        value_type* data() noexcept {
+            return data_.data();   // -> &data_[0]
+        }
+
+        // Puntero solo-lectura (si el objeto ES const)
+        const value_type* data() const noexcept {
+            return data_.data();
+        }
+    
     void printVector() const {
         cout << "RnVector<" << dim << ">: (";
         for (size_t i = 0; i < dim; ++i) {
@@ -38,6 +49,26 @@ class RnVector  {
         }
         cout << ")" << endl;
     }
+
+    void printVector2() const {
+        const value_type* ptr = data();  // obtiene puntero interno
+
+        cout << "(";
+        for (size_t i = 0; i < dim; ++i) {
+            cout << ptr[i];
+            if (i + 1 < dim)
+                cout << ", ";
+        }
+        cout << ")" << endl;
+    }
+
+    void PrintVector3() const {
+        for (auto value : data_) {
+            cout << value << " ";
+        }
+        cout << endl;
+    }
+
 };
 
 #endif // __Rn_H__
