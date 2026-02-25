@@ -5,6 +5,7 @@
 #include <array>
 #include <type_traits>
 #include <cstddef>
+#include <cmath>
 
 #include "types.h"
 
@@ -119,6 +120,16 @@ class RnVector {
         value_type result = 0;
         for (std::size_t i = 0; i < dim; ++i) result += data_[i] * o.data_[i];
         return result;
+    }
+
+    RnVector operator/(value_type scalar) const {
+        RnVector result(*this);
+        for (std::size_t i = 0; i < dim; ++i) result.data_[i] /= scalar;
+        return result;
+    };
+
+    value_type norm() const {
+        return std::sqrt(*this * *this);
     }
 
 };
