@@ -132,6 +132,64 @@ class RnVector {
         return std::sqrt(*this * *this);
     }
 
+    /**
+     * @brief Acceso por índice con verificación de rango.
+     *
+     * Devuelve una referencia modificable al componente en la posición @p i,
+     * permitiendo tanto lectura como escritura.
+     *
+     * @param i Índice del componente (base 0).
+     * @return Referencia al componente @p i.
+     *
+     * @throws std::out_of_range Si @p i >= dim.
+     *
+     * @par Ejemplo:
+     * @code
+     *   RnVector v(1.0, 2.0, 3.0);
+     *   v[0] = 5.0;       // escritura
+     *   Real x = v[1];    // lectura
+     * @endcode
+ */    
+    value_type& operator[](std::size_t i) {
+        if (i >= dim)
+            throw std::out_of_range(
+                "Índice " + std::to_string(i) + 
+                " fuera de rango [0, " + std::to_string(dim) + ")");
+        return data_[i];
+    }
+
+    /**
+     * @brief Acceso por índice con verificación de rango (versión const).
+     *
+     * Devuelve una referencia de solo lectura al componente en la posición @p i.
+     * Se invoca automáticamente cuando el objeto está declarado como @c const.
+     *
+     * @param i Índice del componente (base 0).
+     * @return Referencia constante al componente @p i.
+     *
+     * @throws std::out_of_range Si @p i >= dim.
+     *
+     * @par Ejemplo:
+     * @code
+     *   const RnVector v(1.0, 2.0, 3.0);
+     *   Real x = v[0];    // ✅ solo lectura
+     *   v[0] = 5.0;       // ❌ error de compilación — objeto const
+     * @endcode
+ */
+    const value_type& operator[](std::size_t i) const {
+        if (i >= dim)
+            throw std::out_of_range(
+                "Índice " + std::to_string(i) + 
+                " fuera de rango [0, " + std::to_string(dim) + ")");
+        return data_[i];
+    }
+
+    RnVector unit_vector() const {
+        value_type n = norm();
+        if (n == 0) throw std::runtime_error("No se puede normalizar el vector cero");
+        return *this / n;
+    }
+
 };
 
 /**

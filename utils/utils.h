@@ -11,7 +11,7 @@ using value_type = Real;
 #define PI 3.14159265358979323846
 
 template <typename... Args>
-value_type angle(const RnVector<Args ...>& v1, const RnVector<Args ...>& v2) {
+Angle angle(const RnVector<Args ...>& v1, const RnVector<Args ...>& v2) {
     value_type dot_product = v1 * v2;
     value_type norms_product = v1.norm() * v2.norm();
     if (norms_product == 0) return 0; // Evita división por cero

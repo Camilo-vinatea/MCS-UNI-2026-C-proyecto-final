@@ -1,9 +1,9 @@
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -g -pthread # Añadido -pthread
+CXXFLAGS = -std=c++20 -Wall -g -pthread -I include -I utils # Añadido -pthread
 LDFLAGS = -pthread # Añadido -pthread
 
-TARGET = main
-SRCS = main.cpp RnVectorSpace.cpp
+TARGET 	=	main
+SRCS 	= 	src/main.cpp src/RnVectorSpace.cpp
 
 #main.cpp util.cpp Pointers.cpp \
 	   bits.cpp \

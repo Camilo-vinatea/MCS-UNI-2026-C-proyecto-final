@@ -1,7 +1,5 @@
 #include <iostream>
-#include "Rn.h"
-#include "types.h"
-#include "utils.h"
+#include "RnLibs.h"
 
 using namespace std;
 
@@ -60,8 +58,47 @@ void RnVectorSpace() {
     // Ejemplo de ángulo entre 2 vectores
     RnVector v8(0,0,1);
     RnVector v9(0,1,0);
-    Real angulo = angle(v8, v9);
+    Angle angulo = angle(v8, v9);
     cout << "\nAngulo entre v8 y v9: " << angulo << "deg" << endl;
     
 
+    // Ejemplo de vector R3
+    R3 r3_vector(1.0, 2.0, 3.0);
+    cout << "\nVector R3:" << endl;
+    r3_vector.printVector();
+
+    // Ejemplo de vector R3
+    R3 r3_vector2(4.0, 5.0, 6.0);
+    cout << "\nVector2 R3:" << endl;
+    r3_vector2.printVector();
+
+    // Ejemplo de producto vectorial en R3
+    R3 cross_product = r3_vector.cross(r3_vector2);
+    cout << "\nProducto vectorial de r3_vector y r3_vector2:" << endl;
+    cross_product.printVector();
+
+    // Ejemplo de vector unitario en R3
+    R3 unit_vector = r3_vector.unit_vector();
+    cout << "\nVector unitario de r3_vector:" << endl;
+    unit_vector.printVector();
+    cout << "\nNorma del vector unitario: " << unit_vector.norm() << endl; // Debería ser 1.0   
+
+    // Ejemplo de vector unitario en Rn (con dimensión arbitraria)
+    RnVector v10(5,-6,1,5,2.71); // Vector en R^5
+    cout << "\nVector en R^5:" << endl;
+    v10.printVector();
+    RnVector unit_vector_5d = v10.unit_vector();
+    cout << "\nVector unitario en R5, v10:" << endl;
+    unit_vector_5d.printVector();
+    cout << "\nNorma del vector unitario: " << unit_vector_5d.norm() << endl; // Debería ser 1.0   
+
+    // Ejemplo de vector en R2
+    R2 r2_vector(3.0, 4.0);
+    cout << "\nVector R2:" << endl;
+    r2_vector.print();
+    cout << "\nNorma del vector R2: " << r2_vector.norm() << endl; // Debería ser 5.0
+    cout << "\nVector unitario de r2_vector:" << endl;
+    R2 unit_vector_r2 = r2_vector.unit_vector();
+    unit_vector_r2.print();
+    cout << "\nNorma del vector unitario R2: " << unit_vector_r2.norm() << endl; // Debería ser 1.0
 }
