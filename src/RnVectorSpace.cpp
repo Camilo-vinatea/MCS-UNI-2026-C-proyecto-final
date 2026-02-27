@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "RnLibs.h"
 
 using namespace std;
@@ -101,4 +102,31 @@ void RnVectorSpace() {
     R2 unit_vector_r2 = r2_vector.unit_vector();
     unit_vector_r2.print();
     cout << "\nNorma del vector unitario R2: " << unit_vector_r2.norm() << endl; // Debería ser 1.0
+
+    // Ejemplo de sobrecarga de operador << para imprimir vector Rn en OStream
+    cout << "\nImprimiendo v1 usando operador << sobrecargado:" << endl;
+    cout << v1 << endl;
+
+    // Ejemplo de arreglo de punteros apuntando a diferentes vectores en Rn con distintas dimensiones
+    constexpr int size = 13;
+    unique_ptr<RnBase> vectors[size];
+
+    vectors[0] = make_unique<decltype(v1)>(v1); // RnVector en R3
+    vectors[1] = make_unique<decltype(v2)>(v2); // RnVector en R3
+    vectors[2] = make_unique<decltype(v3)>(v3); // RnVector en R5
+    vectors[3] = make_unique<decltype(v4)>(v4); // RnVector en R5
+    vectors[4] = make_unique<decltype(v5)>(v5); // RnVector en R3
+    vectors[5] = make_unique<decltype(v6)>(v6); // RnVector en R3
+    vectors[6] = make_unique<decltype(v7)>(v7); // RnVector en R3
+    vectors[7] = make_unique<decltype(v8)>(v8); // RnVector en R3
+    vectors[8] = make_unique<decltype(v9)>(v9); // RnVector en R3  
+    vectors[9] = make_unique<decltype(v10)>(v10); // RnVector en R5
+    vectors[10] = make_unique<decltype(r3_vector)>(r3_vector); // R3
+    vectors[11] = make_unique<decltype(r3_vector2)>(r3_vector2); // R3
+    vectors[12] = make_unique<decltype(r2_vector)>(r2_vector); // R2    
+
+    cout << "\nImprimiendo vector desde arreglo de punteros a RnBase:" << endl;
+    for (auto& vec : vectors)
+        cout << "Vector: " << *vec << endl; // Llama al operador << sobrecargado, que a su vez llama a printVectorToOstream()
+
 }

@@ -12,8 +12,24 @@
 using namespace std;
 void RnVectorSpace();
 
+class RnBase {
+    public:
+        virtual         ~RnBase()                               = default;
+
+        virtual         std::size_t size()                      const = 0;
+        virtual         Real norm()                             const = 0;
+        virtual void    printVector()                           const = 0;
+        virtual void    printVector2()                          const = 0;
+        virtual void    PrintVector3()                          const = 0;
+        virtual void    printVectorToOstream(ostream& os)       const = 0;
+        friend ostream& operator<<(ostream& os, const RnBase& v) {
+            v.printVectorToOstream(os);
+            return os;
+        }
+};
+
 template <typename... Args>
-class RnVector {
+class RnVector: public RnBase {
     public:
         static constexpr std::size_t dim = sizeof...(Args);
         using value_type = Real;
@@ -31,6 +47,8 @@ class RnVector {
         // ── Destructor de clase ────────────────────────────────────────────
         ~RnVector() = default;
 
+        std::size_t size() const override { return dim; }
+
     public:
         // Puntero modificable (si el objeto NO es const)
         value_type* data() noexcept {
@@ -42,7 +60,7 @@ class RnVector {
             return data_.data();
         }
     
-    void printVector() const {
+    void printVector() const override {
         cout << "RnVector<" << dim << ">: (";
         for (size_t i = 0; i < dim; ++i) {
             cout << data_[i];
@@ -51,7 +69,7 @@ class RnVector {
         cout << ")" << endl;
     }
 
-    void printVector2() const {
+    void printVector2() const override {
         const value_type* ptr = data();  // obtiene puntero interno
 
         cout << "(";
@@ -63,7 +81,7 @@ class RnVector {
         cout << ")" << endl;
     }
 
-    void PrintVector3() const {
+    void PrintVector3() const override{
         cout << "(";
         for (auto value : data_) {
             cout << value;
@@ -128,7 +146,7 @@ class RnVector {
         return result;
     };
 
-    value_type norm() const {
+    value_type norm() const override {
         return std::sqrt(*this * *this);
     }
 
@@ -188,6 +206,20 @@ class RnVector {
         value_type n = norm();
         if (n == 0) throw std::runtime_error("No se puede normalizar el vector cero");
         return *this / n;
+    }
+
+    friend ostream &operator<<(ostream &os, const RnVector &v) {
+        v.printVectorToOstream(os);
+        return os;
+    }
+
+    virtual void printVectorToOstream(ostream& os) const override {
+        os << "RnVector<" << dim << ">: (";
+        for (size_t i = 0; i < dim; ++i) {
+            os << data_[i];
+            if (i < dim - 1) os << ", ";
+        }
+        os << ")";
     }
 
 };
