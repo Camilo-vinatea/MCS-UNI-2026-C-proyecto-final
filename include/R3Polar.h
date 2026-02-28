@@ -6,7 +6,6 @@
 #include "types.h"
 #include "R3.h"
 
-using namespace std;
 /**
  * @file    R3Polar.h
  * @brief   Clase para representar vectores en R3 usando coordenadas esféricas.
@@ -171,7 +170,7 @@ public:
      *
      * @see operator
      */
-    void print(ostream& os) const {
+    void print(std::ostream& os) const {
         os << "(r, theta, phi) = (" << r_ << ", " << theta_ << ", " << phi_ << ")\n";
     }
     /**
@@ -191,7 +190,7 @@ public:
      *   // Salida: (r, theta, phi) = (1, 1.5708, 0.7854)
      * @endcode
      */
-    friend ostream& operator<<(ostream& os, const R3Polar& v) {
+    friend std::ostream& operator<<(std::ostream& os, const R3Polar& v) {
         v.print(os);
         return os;
     }

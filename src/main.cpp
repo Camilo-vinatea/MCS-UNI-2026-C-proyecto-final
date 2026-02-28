@@ -2,6 +2,7 @@
 #include "Rn.h"
 
 using namespace std;
+void RnVectorSpace();
 
 int main() {
     cout << "\n==============================" << endl;

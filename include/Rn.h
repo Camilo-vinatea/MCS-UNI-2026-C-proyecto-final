@@ -45,9 +45,6 @@
 
 #include "types.h"
 
-using namespace std;
-void RnVectorSpace();
-
 // ════════════════════════════════════════════════════════════════════════════
 //  CLASE BASE ABSTRACTA
 // ════════════════════════════════════════════════════════════════════════════
@@ -135,7 +132,7 @@ class RnBase {
          *
          * @param os Stream de salida sobre el que se escribe.
          */
-        virtual void    printVectorToOstream(ostream& os)       const = 0;
+        virtual void    printVectorToOstream(std::ostream& os)       const = 0;
 
         /**
          * @brief Sobrecarga del operador de inserción en stream (@c <<).
@@ -154,7 +151,7 @@ class RnBase {
          *   cout << *p << endl;   // llama a R3::printVectorToOstream() ✅
          * @endcode
          */
-        friend ostream& operator<<(ostream& os, const RnBase& v) {
+        friend std::ostream& operator<<(std::ostream& os, const RnBase& v) {
             v.printVectorToOstream(os);
             return os;
         }
@@ -202,7 +199,7 @@ class RnVector: public RnBase {
 
     private:
         /** @brief Array interno de tamaño fijo que almacena las componentes del vector. */
-        array<value_type, dim> data_;
+        std::array<value_type, dim> data_;
 
         /**
          * @brief Restricción estática: todos los tipos del pack deben ser aritméticos.
@@ -216,7 +213,7 @@ class RnVector: public RnBase {
          *   // equivale a: is_arithmetic<A0> && is_arithmetic<A1> && ...
          * @endcode
          */
-        static_assert((is_arithmetic_v<Args> && ...), 
+        static_assert((std::is_arithmetic_v<Args> && ...), 
                     "Todos los argumentos deben ser tipos numéricos");
 
     public:
@@ -544,7 +541,7 @@ class RnVector: public RnBase {
      *   cout << v << endl;   // → RnVector<3>: (1, 2, 3)
      * @endcode
      */    
-    friend ostream &operator<<(ostream &os, const RnVector &v) {
+    friend std::ostream &operator<<(std::ostream &os, const RnVector &v) {
         v.printVectorToOstream(os);
         return os;
     }
@@ -563,7 +560,7 @@ class RnVector: public RnBase {
      *   RnVector<3>: (1, 2, 3)
      * @endcode
      */    
-    virtual void printVectorToOstream(ostream& os) const override {
+    virtual void printVectorToOstream(std::ostream& os) const override {
         os << "RnVector<" << dim << ">: (";
         for (size_t i = 0; i < dim; ++i) {
             os << data_[i];

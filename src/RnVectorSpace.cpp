@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 void RnVectorSpace() {
     // Aquí puedes implementar la lógica para el espacio vectorial Rn
     cout << "Implementando el espacio vectorial Rn..." << endl;
@@ -17,7 +18,7 @@ void RnVectorSpace() {
 
     // Ejemplo de operador de suma sobrecargado
     RnVector v3 = v1 + v2; // Suma de dos vectores v1 & v2
-    cout << "\nSuma de v1 + v2:" << endl;
+    cout << "\nSuma de v1 pero+ v2:" << endl;
     cout << v3 << endl;
 
     // Ejemplo de operador de resta sobrecargado
@@ -106,8 +107,8 @@ void RnVectorSpace() {
 
     vectors[0] = make_unique<decltype(v1)>(v1); // RnVector en R3
     vectors[1] = make_unique<decltype(v2)>(v2); // RnVector en R3
-    vectors[2] = make_unique<decltype(v3)>(v3); // RnVector en R5
-    vectors[3] = make_unique<decltype(v4)>(v4); // RnVector en R5
+    vectors[2] = make_unique<decltype(v3)>(v3); // RnVector en R3
+    vectors[3] = make_unique<decltype(v4)>(v4); // RnVector en R3
     vectors[4] = make_unique<decltype(v5)>(v5); // RnVector en R3
     vectors[5] = make_unique<decltype(v6)>(v6); // RnVector en R3
     vectors[6] = make_unique<decltype(v7)>(v7); // RnVector en R3

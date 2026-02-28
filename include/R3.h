@@ -4,8 +4,6 @@
 #include "Rn.h"
 #include "types.h"
 
-using namespace std;
-
 class R3 : public RnVector<Real, Real, Real> {
     public:
         using Base = RnVector<Real, Real, Real>;
