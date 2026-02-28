@@ -96,11 +96,11 @@ void RnVectorSpace() {
     // Ejemplo de vector en R2
     R2 r2_vector(3.0, 4.0);
     cout << "\nVector R2:" << endl;
-    r2_vector.print();
+    r2_vector.printVector();
     cout << "\nNorma del vector R2: " << r2_vector.norm() << endl; // Debería ser 5.0
     cout << "\nVector unitario de r2_vector:" << endl;
     R2 unit_vector_r2 = r2_vector.unit_vector();
-    unit_vector_r2.print();
+    unit_vector_r2.printVector();
     cout << "\nNorma del vector unitario R2: " << unit_vector_r2.norm() << endl; // Debería ser 1.0
 
     // Ejemplo de sobrecarga de operador << para imprimir vector Rn en OStream
@@ -128,5 +128,11 @@ void RnVectorSpace() {
     cout << "\nImprimiendo vector desde arreglo de punteros a RnBase:" << endl;
     for (auto& vec : vectors)
         cout << "Vector: " << *vec << endl; // Llama al operador << sobrecargado, que a su vez llama a printVectorToOstream()
+
+    // Ejemplo de conversión entre coordenadas cartesianas y esféricas
+    R3 r3_vector3 (0, 0, -1);
+    cout << "\nVector R3 para conversion a coordenadas esfericas:" << r3_vector3 << endl;;
+    R3Polar r3_vector3_polar = R3Polar::fromCartesian(r3_vector3);
+    cout << "Vector R3 convertido a coordenadas esfericas:" << r3_vector3_polar << endl;
 
 }

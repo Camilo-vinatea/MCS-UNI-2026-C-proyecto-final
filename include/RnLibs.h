@@ -6,5 +6,6 @@
 #include "R2.h"
 #include "types.h"
 #include "utils.h"
+#include "R3Polar.h"
 
 #endif // __Rn_Libs_H__
