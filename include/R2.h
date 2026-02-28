@@ -19,7 +19,7 @@ public:
     explicit R2(const Base& v) : Base(v) {}
 
     // ── Destructor ────────────────────────────────────────────────────
-    ~R2() = default;
+    virtual ~R2() = default;
 
     // ── Accesores semánticos ──────────────────────────────────────────
     Real  x() const { return (*this)[0]; }
@@ -35,11 +35,6 @@ public:
     R2 unit_vector()          const { return R2(Base::unit_vector()); }
 
     friend R2 operator*(Real scalar, const R2& v) { return v * scalar; }
-
-    // ── Print ─────────────────────────────────────────────────────────
-    void print() const {
-        std::cout << "R2(" << x() << ", " << y() << ")\n";
-    }
 };
 
 

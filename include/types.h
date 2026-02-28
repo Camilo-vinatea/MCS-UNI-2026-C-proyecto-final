@@ -1,4 +1,4 @@
 using Real = double;
 using Angle = double;
-using theta = Angle;
-using phi = Angle;
+using Theta = Angle;
+using Phi = Angle;

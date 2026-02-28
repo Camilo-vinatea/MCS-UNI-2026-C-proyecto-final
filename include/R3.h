@@ -17,7 +17,7 @@ class R3 : public RnVector<Real, Real, Real> {
         explicit R3(const Base& v) : Base(v) {} 
 
         // ── Destructor de clase ────────────────────────────────────────────
-        ~R3() = default;
+        virtual ~R3() = default;
 
         // ── Accesores semánticos ──────────────────────────────────────────────────
         Real x() const { return (*this)[0]; }
