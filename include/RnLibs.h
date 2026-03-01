@@ -7,5 +7,6 @@
 #include "types.h"
 #include "utils.h"
 #include "R3Polar.h"
+#include "R3Cilindricas.h"
 
 #endif // __Rn_Libs_H__

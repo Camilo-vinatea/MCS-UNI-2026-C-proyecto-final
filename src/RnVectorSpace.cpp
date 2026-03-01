@@ -129,4 +129,10 @@ void RnVectorSpace() {
     R3Polar r3_vector3_polar = R3Polar::fromCartesian(r3_vector3);
     cout << "Vector R3 convertido a coordenadas esfericas:" << r3_vector3_polar << endl;
 
+    // Ejemplo de conversión entre coordenadas cartesianas y cilíndricas
+    R3 r3_vector4 (1, 1, 1);
+    cout << "\nVector R3 para conversion a coordenadas cilindricas:" << r3_vector4 << endl;;
+    R3Cilindricas r3_vector4_cilindricas = R3Cilindricas::fromCartesian(r3_vector4);
+    cout << "Vector R3 convertido a coordenadas cilindricas:" << r3_vector4_cilindricas << endl;
+    
 }
